@@ -9,11 +9,17 @@ function ProjectList ({ projects }: ProjectListProps) {
         const handleEdit = (project: Project) => {
             setProjectEdited(project);
        };
+
+       const cancelEditing = () => {
+            setProjectEdited({});
+       };
     
         const items = projects.map(project => (
            <div key={project.id} className="cols-sm">
             {project === projectBeingEdited ? (
-                <ProjectForm/>
+                <ProjectForm
+                    onCancel={cancelEditing}
+                />
             ) : (
                 <ProjectCard project={project} onEdit={handleEdit} />
              )}
